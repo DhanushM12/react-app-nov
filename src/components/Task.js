@@ -1,8 +1,10 @@
 import React from 'react'
 
-function Task() {
+function Task(props) {
   return (
-    <div>Task</div>
+    <div>
+        <li>{props.text} <button>Delete</button></li>
+    </div>
   )
 }
 

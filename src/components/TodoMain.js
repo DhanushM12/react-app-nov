@@ -8,11 +8,21 @@ function TodoMain() {
         setTask(event.target.value)
     }
 
-    const addTask = () => {
+    function addTask(){
+        if (task !== ""){
+            setTaskArray((prevTasks) => {
+                return [...prevTasks, task]
+            })
+            setTask("");
+        }        
+    }
+    const deleteItem = (id) => {
+        // console.log(id, 'to be deleted')
         setTaskArray((prevTasks) => {
-            return [...prevTasks, task]
+            return prevTasks.filter((ele, index) => {
+                return index !== id;
+            })
         })
-        setTask("");
     }
   return (
     <div>
@@ -23,7 +33,7 @@ function TodoMain() {
         </div>
         <ol>
             {taskArray.map((val, index)=> {
-                return <Task key={index} text={val} />
+                return <Task key={index} id={index} text={val} onSelect={deleteItem}/>
             })}
         </ol>
     </div>
